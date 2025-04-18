@@ -4,32 +4,35 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/main.css"],
   modules: [
-    '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/scripts',
     '@nuxtjs/seo',
-    '@nuxt/fonts',
-    '@nuxtjs/fontaine',
     'nuxt-vitalizer',
     'nuxt-booster',
+    '@nuxtjs/fontaine',
+    '@nuxt/scripts',
+    '@nuxt/fonts',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/supabase',
+    '@pinia/nuxt',
   ],
+  supabase: {
+    redirect: false,
+  },
   fonts: {
     defaults: {
-      weights: [400, 500, 700, 900],
+      weights: [400, 500, 600],
     }
   },
-  icon: {
-    size: '1rem',
-    serverBundle: {
-      collections: ['mingcute', 'mdi'],
-    }
-  },
+  // App
   site: {
     url: 'https://andyloisch.com.ar',
     name: 'AndyLoisch',
     description: 'AndyLoisch',
     defaultLocale: 'es',
   },
+  plugins: [
+    { src: '~/plugins/preload-data.js', mode: 'client' }
+  ],
   booster: {
     detection: {
       performance: true,

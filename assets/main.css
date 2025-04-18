@@ -1,25 +1,22 @@
-/* :root {
-    --color-dark-black: #090300;
-    --color-black: #171819;
-    --color-white: #FFFFFF;
-    --color-primary: #FCB716;
-    --color-dark-gray: #808080;
-    --color-gray: #CDCED0;
-    --color-red: #E71316;
-} */
-
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     list-style: none;
-    /* font-family: "Poppins", serif; */
-    scroll-behavior: smooth;
-    padding: 0;
-    margin: 0;
+    font-family: "DM Sans", sans-serif;
+}
+
+html,
+main {
+    height: 100%;
 }
 
 body {
-    /* background-color: var(--color-black); */
-    /* color: var(--color-white); */
+    height: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+
+/* .shadow-1 {
+    box-shadow: 0px 2px 2px 0px #00000040;
+} */
