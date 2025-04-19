@@ -7,15 +7,15 @@ export default {
             'xl': '1080px',
             '2xl': '1440px',
         },
-        // extend: {
-        //     colors: {
-        //         primary: "#E73731",
-        //         secondary: "#811F1B",
-        //         sikaPrimary: "#FFC510",
-        //         sikaSecondary: "#99760A",
-        //         gray: "#616161",
-        //         lightGray: "#F9F9F9",
-        //     }
-        // }
+        extend: {
+            colors: {
+                primary: "#A91F25",
+                secondary: "#5B1212",
+                accent: "#C5981B",
+                sikaSecondary: "#99760A",
+                drak: "#191919",
+                light: "#F6F1E4",
+            }
+        }
     }
 }
