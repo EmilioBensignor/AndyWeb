@@ -20,3 +20,12 @@ body {
 /* .shadow-1 {
     box-shadow: 0px 2px 2px 0px #00000040;
 } */
+
+@keyframes autoRun {
+    from {
+        left: 100%;
+    }
+    to {
+        left: calc(var(--width) * -1);
+    }
+}

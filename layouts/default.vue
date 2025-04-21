@@ -1,5 +1,7 @@
 <template>
     <DefaultHeader />
-    <slot />
+    <main class="bg-dark text-light">
+        <slot />
+    </main>
     <DefaultFooter />
 </template>

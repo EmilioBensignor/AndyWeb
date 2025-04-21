@@ -1,3 +1,7 @@
 <template>
-    <h1 class="text-2xl">Andy</h1>
+    <h1 class="sr-only">Andy Loisch</h1>
+    <HomeHero />
+    <HomeFrase />
+    <HomeObras />
+    <HomeAndy />
 </template>
