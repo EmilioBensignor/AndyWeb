@@ -1,22 +1,33 @@
 <template>
     <DefaultSection>
-        <DefaultContent class="pt-[60px]">
-            <div class="w-full border border-light overflow-hidden bg-secondary"
-                style="--width: 100%; --height: 100px; --quantity: 10;">
-                <div class="w-full flex relative">
-                    <div v-for="n in 10" :key="n" :style="{
-                        '--position': n,
-                        width: 'var(--width)',
-                        height: 'var(--height)',
-                        position: 'absolute',
-                        left: '100%',
-                        animation: 'autoRun 10s linear infinite',
-                        animationDelay: `calc((10s / var(--quantity)) * (var(--position) - 1))`
-                    }" class="flex items-center justify-center">
-                        <p class="text-xl font-bold">SOY ANDY LOISCH</p>
+        <div class="w-full overflow-hidden relative">
+            <div class="w-max flex items-center bg-secondary border border-light animate-scrollLoop py-3">
+                <template v-for="i in 2" :key="i">
+                    <div v-for="j in 10" :key="`slide-${i}-${j}`"
+                        class="flex items-center justify-center text-light text-sm mr-4">
+                        SOY ANDY LOISCH
                     </div>
-                </div>
+                </template>
             </div>
+        </div>
+        <DefaultContent>
+            <NuxtImg src="/images/home/Andy-Loisch.png" alt="Andy Loisch" />
         </DefaultContent>
     </DefaultSection>
 </template>
+
+<style scoped>
+@keyframes scrollLoop {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scrollLoop {
+    animation: scrollLoop 20s linear infinite;
+}
+</style>
