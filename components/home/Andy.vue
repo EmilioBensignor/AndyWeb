@@ -11,10 +11,36 @@
             </div>
         </div>
         <DefaultContent>
-            <NuxtImg src="/images/home/Andy-Loisch.png" alt="Andy Loisch" />
+            <NuxtImg src="/images/home/Andy-Loisch.png" alt="Andy Loisch" class="w-full" />
+            <div>
+                <div v-for="(frase, index) in frases" :key="index" class="border-b first-of-type:border-t border-light py-8 px-5">
+                    <p>{{ frase.texto }}</p>
+                </div>
+            </div>
         </DefaultContent>
     </DefaultSection>
 </template>
+
+<script setup>
+const frases = [
+    {
+        texto: 'BORDO, CORTO, PEGO, OBSERVO',
+        textura: ''
+    },
+    {
+        texto: 'ENCUENTRO BELLEZA EN LO IMPERFECTO',
+        textura: ''
+    },
+    {
+        texto: 'BORDO, CORTO, PEGO, OBSERVO',
+        textura: ''
+    },
+    {
+        texto: 'ME INSPIRAN LOS OBJETOS OLVIDADOS',
+        textura: ''
+    },
+]
+</script>
 
 <style scoped>
 @keyframes scrollLoop {

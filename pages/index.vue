@@ -4,4 +4,5 @@
     <HomeFrase />
     <HomeObras />
     <HomeAndy />
+    <HomeCategorias />
 </template>

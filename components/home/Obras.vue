@@ -1,14 +1,14 @@
 <template>
     <DefaultSection class="bg-gradient-to-b from-darkOpacity to-dark px-5 pt-[7.5rem] pb-[3.75rem] -mt-[10rem]">
-        <DefaultContent>
-            <div class="grid grid-cols-3 grid-rows-4 xl:grid-cols-4 xl:grid-rows-3 gap-2 w-full max-w-6xl mx-auto">
-                <div v-for="(img, index) in images" :key="index" :class="[baseGrid[index], responsiveGrid[index]]">
+        <DefaultContent class="flex flex-col gap-11">
+            <div class="grid grid-cols-3 grid-rows-4 xl:grid-cols-4 xl:grid-rows-3 gap-[6px] w-full max-w-6xl mx-auto">
+                <div v-for="(img, index) in images" :key="index" :class="[baseGrid[index], responsiveGrid[index]]"
+                    class="max-h-[112px] border border-light">
                     <img :src="`/images/obras/${img}-Andy-Loisch.png`" :alt="`${img} Andy Loisch`"
-                        class="w-full h-full object-cover rounded-md shadow-md" />
+                        class="w-full h-full object-cover" />
                 </div>
             </div>
-
-            <div class="flex justify-center mt-10">
+            <div class="flex justify-center">
                 <NuxtLink :to="ROUTE_NAMES.OBRAS"
                     class="bg-secondary rounded-full border border-light text-center text-light py-5 px-7">
                     VER TODAS LAS OBRAS
