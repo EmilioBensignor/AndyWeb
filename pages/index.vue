@@ -1,8 +1,10 @@
 <template>
     <h1 class="sr-only">Andy Loisch</h1>
     <HomeHero />
-    <HomeFrase />
-    <HomeObras />
-    <HomeAndy />
-    <HomeCategorias />
+    <DefaultParallax>
+        <HomeFrase />
+        <HomeObras />
+        <HomeAndy />
+        <HomeCategorias />
+    </DefaultParallax>
 </template>
