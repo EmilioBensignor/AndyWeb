@@ -1,5 +1,6 @@
 <template>
-    <DefaultSection class="bg-gradient-to-b from-darkOpacity to-dark px-5 pt-[7.5rem] pb-[3.75rem] -mt-[10rem]">
+    <DefaultSection
+        class="px-5 pt-[7.5rem] pb-[3.75rem] -mt-[8rem] bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10%">
         <DefaultContent class="flex flex-col gap-11">
             <div class="grid grid-cols-3 grid-rows-4 xl:grid-cols-4 xl:grid-rows-3 gap-[6px] w-full max-w-6xl mx-auto">
                 <div v-for="(img, index) in images" :key="index" :class="[baseGrid[index], responsiveGrid[index]]"
@@ -32,27 +33,25 @@ const images = [
     'Textil',
 ]
 
-// Base layout: grid de 3 columnas × 4 filas
 const baseGrid = [
-    'col-span-3 row-span-1', // div1
-    'col-span-1 row-span-1', // div2
-    'col-span-1 row-span-1', // div3
-    'col-span-1 row-span-1', // div4
-    'col-span-2 row-span-1', // div5
-    'col-span-1 row-span-1', // div6
-    'col-span-1 row-span-1', // div7
-    'col-span-2 row-span-1', // div8
+    'col-span-3 row-span-1',
+    'col-span-1 row-span-1',
+    'col-span-1 row-span-1',
+    'col-span-1 row-span-1',
+    'col-span-2 row-span-1',
+    'col-span-1 row-span-1',
+    'col-span-1 row-span-1',
+    'col-span-2 row-span-1',
 ]
 
-// Responsive layout: grid de 4 columnas × 3 filas (a partir de xl)
 const responsiveGrid = [
-    'xl:col-span-2 xl:row-span-1', // div1
-    'xl:col-span-1 xl:row-span-1', // div2
-    'xl:col-span-1 xl:row-span-1', // div3
-    'xl:col-span-1 xl:row-span-1', // div4
-    'xl:col-span-2 xl:row-span-1', // div5
-    'xl:col-span-1 xl:row-span-1', // div6
-    'xl:col-span-2 xl:row-span-1', // div7
-    'xl:col-span-2 xl:row-span-1', // div8
+    'xl:col-span-2 xl:row-span-1',
+    'xl:col-span-1 xl:row-span-1',
+    'xl:col-span-1 xl:row-span-1',
+    'xl:col-span-1 xl:row-span-1',
+    'xl:col-span-2 xl:row-span-1',
+    'xl:col-span-1 xl:row-span-1',
+    'xl:col-span-2 xl:row-span-1',
+    'xl:col-span-2 xl:row-span-1',
 ]
 </script>

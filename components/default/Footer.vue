@@ -1,6 +1,6 @@
 <template>
     <footer
-        class="bg-[url('/images/backgrounds/Flores-Andy-Loisch.jpg')] bg-cover bg-center bg-no-repeat text-light p-5 pt-[10rem]">
+        class="relative z-[2] bg-[url('/images/backgrounds/Flores-Andy-Loisch.jpg')] bg-cover bg-center bg-no-repeat text-light p-5 pt-[9rem]">
         <DefaultContent class="flex flex-col gap-8">
             <h1 class="text-xl">ANDY LOISCH</h1>
             <p class="text-sm">BUENOS AIRES, ARGENTINA</p>

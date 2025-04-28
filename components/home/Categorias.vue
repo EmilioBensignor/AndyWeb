@@ -1,5 +1,6 @@
 <template>
-    <DefaultSection class="bg-gradient-to-t from-dark to-darkOpacity py-[12.5rem] px-5 -mb-[11rem]">
+    <DefaultSection
+        class="bg-gradient-to-t from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-15% py-[12.5rem] px-5 -mb-[11rem]">
         <DefaultContent>
             <h2 class="text-3xl font-bold text-light mb-12">MIS OBRAS</h2>
             <div ref="container" class="flex flex-wrap justify-center overflow-hidden">
@@ -14,39 +15,42 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+const { $gsap, $ScrollTrigger } = useNuxtApp()
 
 const cards = [
-    { title: "User’s Valentine" },
+    { title: "User's Valentine" },
     { title: "Mobile Maniac" },
     { title: "Developer" },
-    // …más items…
 ]
 
 const container = ref(null)
-const cardsRefs = []
+const cardsRefs = ref([])
 
 onMounted(() => {
-    cardsRefs.forEach(cardEl => {
-        const startAngle = -180
-        const endAngle = 0
-        ScrollTrigger.create({
-            trigger: cardEl,
-            start: 'top 100%',
-            end: 'bottom 50%',
-            scrub: true,
-            onUpdate: self => {
-                const angle = startAngle + (endAngle - startAngle) * self.progress
-                gsap.set(cardEl, { rotationY: angle })
-            }
+    if (process.client) {
+        cardsRefs.value.forEach(cardEl => {
+            const startAngle = -180
+            const endAngle = 0
+            $ScrollTrigger.create({
+                trigger: cardEl,
+                start: 'top 100%',
+                end: 'bottom 50%',
+                scrub: true,
+                onUpdate: self => {
+                    const angle = startAngle + (endAngle - startAngle) * self.progress
+                    $gsap.set(cardEl, { rotationY: angle })
+                }
+            })
         })
-    })
+    }
 })
 
-onBeforeUnmount(() => ScrollTrigger.getAll().forEach(st => st.kill()))
+onBeforeUnmount(() => {
+    if (process.client && $ScrollTrigger) {
+        $ScrollTrigger.getAll().forEach(st => st.kill())
+    }
+})
 </script>
 
 <style scoped>
