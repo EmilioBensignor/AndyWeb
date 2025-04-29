@@ -4,12 +4,12 @@
         <DefaultContent class="flex flex-col gap-8 md:gap-10 2xl:gap-16">
             <div class="flex flex-col xl:flex-row xl:justify-between xl:items-end gap-5 md:gap-6">
                 <h1 class="text-xl md:text-4xl xl:text-5xl">ANDY LOISCH</h1>
-                <p class="text-sm md:text-lg xl:text-2xl 2xl:text-3xl">BUENOS AIRES, ARGENTINA</p>
+                <p class="text-sm md:text-lg xl:text-2xl 2xl:text-[1.75rem]">BUENOS AIRES, ARGENTINA</p>
             </div>
             <nav>
                 <ul class="flex md:justify-center items-center flex-wrap gap-8 md:gap-10">
                     <li v-for="(link, index) in links" :key="index">
-                        <NuxtLink :to="link.url" class="text-sm md:text-lg xl:text-2xl 2xl:text-3xl underline">{{ link.name }}</NuxtLink>
+                        <DefaultLink :to="link.url" :target="link.target ? '_blank' : undefined">{{ link.name }}</DefaultLink>
                     </li>
                 </ul>
             </nav>
@@ -28,19 +28,16 @@ const links = [
     },
     {
         name: "OBRAS",
-        url: ROUTE_NAMES.HOME,
+        url: ROUTE_NAMES.OBRAS,
     },
     {
         name: "INSPIRACIÓN",
-        url: ROUTE_NAMES.HOME,
+        url: ROUTE_NAMES.INSPIRACIONES,
     },
     {
         name: "INSTAGRAM",
-        url: "/",
-    },
-    {
-        name: "CONTACTO",
-        url: "/",
+        url: ROUTE_NAMES.INSTAGRAM,
+        target: true,
     },
 ]
 </script>

@@ -17,11 +17,11 @@
             <nav class="flex items-center gap-8 2xl:gap-10">
                 <ul class="hidden xl:flex items-center gap-8 2xl:gap-10">
                     <li v-for="(item, index) in menuItems" :key="index">
-                        <NuxtLink :to="item.path" class="text-light font-medium text-2xl 2xl:text-[1.75rem]">{{ item.label }}
-                        </NuxtLink>
+                        <DefaultLink :to="item.path">{{ item.label }}
+                        </DefaultLink>
                     </li>
                 </ul>
-                <NuxtLink to="/" class="w-4 md:w-6 h-4 md:h-6 flex justify-center items-center relative z-20">
+                <NuxtLink :to="ROUTE_NAMES.INSTAGRAM" target="_blank" class="w-4 md:w-6 h-4 md:h-6 flex justify-center items-center relative z-20">
                     <NuxtImg src="/images/icons/Andy-Loisch-Textil-Art-Instagram.svg"
                         alt="Andy Loisch Textil Art Instagram" class="w-full h-full" />
                 </NuxtLink>
