@@ -5,6 +5,7 @@ export default {
             'md': '660px',
             'lg': '850px',
             'xl': '1080px',
+            '1/5xl': '1280px',
             '2xl': '1440px',
             '3xl': '1920px',
         },

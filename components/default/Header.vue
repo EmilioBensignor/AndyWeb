@@ -1,5 +1,5 @@
 <template>
-    <header class="w-full fixed top-0 z-10 bg-darkOpacity py-4 md:py-6 xl:py-12 px-5 md:px-10 xl:px-20" ref="headerRef">
+    <header class="w-full fixed top-0 z-10 bg-darkOpacity py-4 md:py-6 xl:py-12 px-5 md:px-10 xl:px-20 2xl:px-32" ref="headerRef">
         <DefaultContent class="flex justify-between items-center">
             <button @click.stop="toggleMenu"
                 class="xl:hidden relative z-20 w-[1.188rem] md:w-[1.625rem] h-[0.875rem] md:h-[1.25rem] flex flex-col justify-between focus-visible:outline-none"
@@ -12,18 +12,18 @@
                     :class="{ '-rotate-45 -translate-y-[0.35rem]': isMenuOpen }"></span>
             </button>
 
-            <h1 class="text-light text-xl xl:text-[2.5rem]">ANDY LOISCH</h1>
+            <h1 class="text-light text-xl xl:text-[2.5rem] 2xl:text-[3.25rem]">ANDY LOISCH</h1>
 
-            <nav class="flex items-center gap-8">
-                <ul class="hidden xl:flex items-center gap-8">
+            <nav class="flex items-center gap-8 2xl:gap-10">
+                <ul class="hidden xl:flex items-center gap-8 2xl:gap-10">
                     <li v-for="(item, index) in menuItems" :key="index">
-                        <NuxtLink :to="item.path" class="text-light font-medium text-2xl">{{ item.label }}
+                        <NuxtLink :to="item.path" class="text-light font-medium text-2xl 2xl:text-[1.75rem]">{{ item.label }}
                         </NuxtLink>
                     </li>
                 </ul>
-                <NuxtLink to="/" class="flex justify-center items-center relative z-20">
+                <NuxtLink to="/" class="w-4 md:w-6 h-4 md:h-6 flex justify-center items-center relative z-20">
                     <NuxtImg src="/images/icons/Andy-Loisch-Textil-Art-Instagram.svg"
-                        alt="Andy Loisch Textil Art Instagram" class="w-4 md:w-6 h-4 md:h-6" />
+                        alt="Andy Loisch Textil Art Instagram" class="w-full h-full" />
                 </NuxtLink>
             </nav>
         </DefaultContent>
