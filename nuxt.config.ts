@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
     '@pinia/nuxt',
+    '@nuxt/icon',
   ],
   supabase: {
     redirect: false,
@@ -21,6 +22,12 @@ export default defineNuxtConfig({
   fonts: {
     defaults: {
       weights: [400, 500, 600],
+    }
+  },
+  icon: {
+    size: '1rem',
+    serverBundle: {
+      collections: ['tabler'],
     }
   },
   // App

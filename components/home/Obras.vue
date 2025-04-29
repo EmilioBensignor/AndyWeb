@@ -1,17 +1,17 @@
 <template>
     <DefaultSection
-        class="pt-32 md:pt-44 xl:pt-60 px-5 md:px-10 xl:px-20 2xl:px-32 pb-16 md:pb-32 xl:pb-40 -mt-32 md:-mt-44 xl:-mt-60 2xl:-mt-64 bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10%">
+        class="bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% pt-32 md:pt-44 xl:pt-60 px-5 md:px-10 xl:px-20 2xl:px-32 pb-16 md:pb-32 xl:pb-40 -mt-32 md:-mt-44 xl:-mt-60 2xl:-mt-64">
         <DefaultContent class="flex flex-col gap-11 md:gap-12">
             <div
                 class="w-full grid grid-cols-3 grid-rows-4 xl:grid-cols-4 xl:grid-rows-3 gap-[6px] md:gap-3 xl:gap-4 2xl:gap-6">
                 <NuxtLink :to="`${ROUTE_NAMES.OBRAS}/${obra.slug}`" v-for="(obra, index) in obras" :key="index"
                     :class="[baseGrid[index], responsiveGrid[index]]"
                     class="max-h-[112px] md:max-h-[232px] 2xl:max-h-[300px] border border-light relative group overflow-hidden">
-                    <img :src="`/images/obras/${obra.img}-Andy-Loisch.png`" :alt="`${obra.title} Andy Loisch`"
+                    <img :src="`/images/obras/${obra.imagen}-Andy-Loisch.png`" :alt="`${obra.titulo} Andy Loisch`"
                         class="w-full h-full object-cover" />
                     <div
                         class="w-full hidden xl:flex flex-col gap-2 absolute bottom-0 left-0 bg-darkOpacity transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 py-2 2xl:py-3 px-4 2xl:px-5">
-                        <p class="text-light 2xl:text-xl">{{ obra.title }}</p>
+                        <p class="text-light 2xl:text-xl">{{ obra.titulo }}</p>
                         <p class="text-light text-xs 2xl:text-base">{{ obra.ancho }} x {{ obra.alto }} cm</p>
                     </div>
                 </NuxtLink>
@@ -32,57 +32,57 @@ import { ROUTE_NAMES } from '~/constants/ROUTE_NAMES'
 const obras = [
     {
         slug: "la-bordadora",
-        img: "Bordado",
-        title: "NUEVA OBRA",
+        imagen: "Bordado",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Textil",
-        title: "NUEVA OBRA",
+        imagen: "Textil",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Intervenciones",
-        title: "NUEVA OBRA",
+        imagen: "Intervenciones",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Collage",
-        title: "NUEVA OBRA",
+        imagen: "Collage",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Bordados",
-        title: "NUEVA OBRA",
+        imagen: "Bordados",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Tejido",
-        title: "NUEVA OBRA",
+        imagen: "Tejido",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Obras",
-        title: "NUEVA OBRA",
+        imagen: "Obras",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },
     {
         slug: "la-bordadora",
-        img: "Composicion",
-        title: "NUEVA OBRA",
+        imagen: "Composicion",
+        titulo: "NUEVA OBRA",
         ancho: "21",
         alto: "48",
     },

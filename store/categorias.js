@@ -1,10 +1,12 @@
+import { defineStore } from 'pinia';
 import { useSupabaseCache } from '~/composables/useSupabaseCache';
 
 export const useCategoriasStore = defineStore('categorias', {
     state: () => ({
         categorias: [],
         loading: false,
-        error: null
+        error: null,
+        subscription: null
     }),
 
     getters: {
@@ -14,17 +16,21 @@ export const useCategoriasStore = defineStore('categorias', {
 
     actions: {
         async fetchCategorias() {
-            const { getFromCache, saveToCache } = useSupabaseCache();
-            const cacheKey = 'categorias_data';
+            this.loading = true;
 
-            const cachedData = getFromCache(cacheKey);
-            if (cachedData) {
-                this.categorias = cachedData;
-                this.refreshCategoriasInBackground();
-                return;
+            if (process.client) {
+                const { getFromCache, saveToCache } = useSupabaseCache();
+                const cacheKey = 'categorias_data';
+
+                const cachedData = getFromCache(cacheKey);
+                if (cachedData) {
+                    this.categorias = cachedData;
+                    this.refreshCategoriasInBackground();
+                    this.loading = false;
+                    return this.categorias;
+                }
             }
 
-            this.loading = true;
             try {
                 const supabase = useSupabaseClient();
                 const { data, error } = await supabase
@@ -35,16 +41,25 @@ export const useCategoriasStore = defineStore('categorias', {
                 if (error) throw error;
 
                 this.categorias = data;
-                saveToCache(cacheKey, data, 60);
+
+                if (process.client) {
+                    const { saveToCache } = useSupabaseCache();
+                    saveToCache('categorias_data', data, 60);
+                }
+
+                return this.categorias;
             } catch (error) {
                 this.error = error.message;
                 console.error('Error al cargar categorías:', error);
+                return [];
             } finally {
                 this.loading = false;
             }
         },
 
         async refreshCategoriasInBackground() {
+            if (!process.client) return;
+
             try {
                 const supabase = useSupabaseClient();
                 const { data, error } = await supabase
@@ -63,15 +78,39 @@ export const useCategoriasStore = defineStore('categorias', {
         },
 
         setupRealtimeUpdates() {
-            const { subscribeToTable } = useRealtimeSubscription();
+            if (!process.client) return () => { };
+            if (this.subscription) {
+                this.subscription.unsubscribe();
+            }
 
-            return subscribeToTable('categorias', (payload) => {
-                if (payload.eventType === 'INSERT') {
-                    const newCategoria = payload.new;
-                    this.categorias = [...this.categorias, newCategoria].sort((a, b) =>
-                        a.nombre.localeCompare(b.nombre)
-                    );
+            const supabase = useSupabaseClient();
+            this.subscription = supabase
+                .channel('categorias-changes')
+                .on('postgres_changes', {
+                    event: '*',
+                    schema: 'public',
+                    table: 'categorias'
+                }, (payload) => {
+                    this.handleCategoriaChanges(payload);
+                })
+                .subscribe();
 
+            return () => {
+                if (this.subscription) {
+                    this.subscription.unsubscribe();
+                    this.subscription = null;
+                }
+            };
+        },
+
+        handleCategoriaChanges(payload) {
+            if (payload.eventType === 'INSERT') {
+                const newCategoria = payload.new;
+                this.categorias = [...this.categorias, newCategoria].sort((a, b) =>
+                    a.nombre.localeCompare(b.nombre)
+                );
+
+                if (process.client) {
                     const { getFromCache, saveToCache } = useSupabaseCache();
                     const cachedData = getFromCache('categorias_data');
                     if (cachedData) {
@@ -83,12 +122,14 @@ export const useCategoriasStore = defineStore('categorias', {
                         );
                     }
                 }
-                else if (payload.eventType === 'UPDATE') {
-                    const updatedCategoria = payload.new;
-                    this.categorias = this.categorias
-                        .map(item => item.id === updatedCategoria.id ? updatedCategoria : item)
-                        .sort((a, b) => a.nombre.localeCompare(b.nombre));
+            }
+            else if (payload.eventType === 'UPDATE') {
+                const updatedCategoria = payload.new;
+                this.categorias = this.categorias
+                    .map(item => item.id === updatedCategoria.id ? updatedCategoria : item)
+                    .sort((a, b) => a.nombre.localeCompare(b.nombre));
 
+                if (process.client) {
                     const { getFromCache, saveToCache } = useSupabaseCache();
                     const cachedData = getFromCache('categorias_data');
                     if (cachedData) {
@@ -100,10 +141,12 @@ export const useCategoriasStore = defineStore('categorias', {
                         );
                     }
                 }
-                else if (payload.eventType === 'DELETE') {
-                    const deletedId = payload.old.id;
-                    this.categorias = this.categorias.filter(item => item.id !== deletedId);
+            }
+            else if (payload.eventType === 'DELETE') {
+                const deletedId = payload.old.id;
+                this.categorias = this.categorias.filter(item => item.id !== deletedId);
 
+                if (process.client) {
                     const { getFromCache, saveToCache } = useSupabaseCache();
                     const cachedData = getFromCache('categorias_data');
                     if (cachedData) {
@@ -113,7 +156,7 @@ export const useCategoriasStore = defineStore('categorias', {
                         );
                     }
                 }
-            });
+            }
         }
     }
 });
