@@ -1,8 +1,8 @@
 <template>
     <DefaultSection class="bg-[url('/images/backgrounds/Flores-Andy-Loisch.jpg')] bg-cover bg-center bg-no-repeat">
-        <div class="px-5 pt-[3.75rem] pb-[7.5rem]">
+        <div class="pt-[3.75rem] md:pt-[7.5rem] px-5 md:px-10 pb-[7.5rem] md:pb-[12.5rem]">
             <DefaultContent class="scroll-reveal">
-                <h2 class="text-xl tracking-widest text-light">
+                <h2 class="text-xl md:text-4xl tracking-widest text-light">
                     <span class="text-[hsl(0_0%_100%_/_0.2)] bg-clip-text">
                         ESTA ES UNA FRASE SOBRE
                         INSPIRACION, ARTE Y VIDA COTIDIANA

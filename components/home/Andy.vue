@@ -2,10 +2,10 @@
     <DefaultSection class="bg-dark">
         <div class="w-full overflow-hidden relative">
             <div
-                class="w-max flex items-center bg-secondary border border-light py-3 whitespace-nowrap animate-marquee">
+                class="w-max flex items-center bg-secondary border border-light py-3 md:py-[0.875rem] whitespace-nowrap animate-marquee">
                 <template v-for="i in 2" :key="i">
                     <div v-for="j in 10" :key="`slide-${i}-${j}`"
-                        class="flex items-center justify-center text-light text-sm mr-4">
+                        class="flex items-center justify-center text-light text-sm md:text-base mr-4 md:mr-5">
                         SOY ANDY LOISCH
                     </div>
                 </template>
@@ -15,13 +15,13 @@
             <NuxtImg src="/images/home/Andy-Loisch.png" alt="Andy Loisch" class="w-full" />
             <div>
                 <div v-for="(frase, index) in frases" :key="index"
-                    class="border-b first-of-type:border-t border-light py-8 px-5 transition-all duration-300 overflow-hidden relative"
+                    class="border-b first-of-type:border-t border-light py-8 px-5 md:px-10 transition-all duration-300 overflow-hidden relative"
                     @mouseenter="hoveredIndex = index" @mouseleave="hoveredIndex = null">
                     <div class="absolute inset-0 w-full h-full overflow-hidden">
                         <NuxtImg :src="frase.textura" alt="Textura" class="w-full h-full object-cover texture-image"
                             :class="{ 'active': hoveredIndex === index }" />
                     </div>
-                    <p class="relative z-10">{{ frase.texto }}</p>
+                    <p class="relative z-10 font-semibold md:text-2xl">{{ frase.texto }}</p>
                 </div>
             </div>
         </DefaultContent>
