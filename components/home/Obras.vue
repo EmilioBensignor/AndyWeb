@@ -2,12 +2,19 @@
     <DefaultSection
         class="pt-32 md:pt-44 xl:pt-60 px-5 md:px-10 xl:px-20 2xl:px-32 pb-16 md:pb-32 xl:pb-40 -mt-32 md:-mt-44 xl:-mt-60 2xl:-mt-64 bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10%">
         <DefaultContent class="flex flex-col gap-11 md:gap-12">
-            <div class="w-full grid grid-cols-3 grid-rows-4 xl:grid-cols-4 xl:grid-rows-3 gap-[6px] md:gap-3 xl:gap-4 2xl:gap-6">
-                <div v-for="(img, index) in images" :key="index" :class="[baseGrid[index], responsiveGrid[index]]"
-                    class="max-h-[112px] md:max-h-[232px] 2xl:max-h-[300px] border border-light">
-                    <img :src="`/images/obras/${img}-Andy-Loisch.png`" :alt="`${img} Andy Loisch`"
+            <div
+                class="w-full grid grid-cols-3 grid-rows-4 xl:grid-cols-4 xl:grid-rows-3 gap-[6px] md:gap-3 xl:gap-4 2xl:gap-6">
+                <NuxtLink :to="`${ROUTE_NAMES.OBRAS}/${obra.slug}`" v-for="(obra, index) in obras" :key="index"
+                    :class="[baseGrid[index], responsiveGrid[index]]"
+                    class="max-h-[112px] md:max-h-[232px] 2xl:max-h-[300px] border border-light relative group overflow-hidden">
+                    <img :src="`/images/obras/${obra.img}-Andy-Loisch.png`" :alt="`${obra.title} Andy Loisch`"
                         class="w-full h-full object-cover" />
-                </div>
+                    <div
+                        class="w-full hidden xl:flex flex-col gap-2 absolute bottom-0 left-0 bg-darkOpacity transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 py-2 2xl:py-3 px-4 2xl:px-5">
+                        <p class="text-light 2xl:text-xl">{{ obra.title }}</p>
+                        <p class="text-light text-xs 2xl:text-base">{{ obra.ancho }} x {{ obra.alto }} cm</p>
+                    </div>
+                </NuxtLink>
             </div>
             <div class="flex justify-center">
                 <NuxtLink :to="ROUTE_NAMES.OBRAS"
@@ -22,15 +29,63 @@
 <script setup>
 import { ROUTE_NAMES } from '~/constants/ROUTE_NAMES'
 
-const images = [
-    'Bordado',
-    'Textil',
-    'Intervenciones',
-    'Collage',
-    'Bordados',
-    'Tejido',
-    'Obras',
-    'Composicion',
+const obras = [
+    {
+        slug: "la-bordadora",
+        img: "Bordado",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Textil",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Intervenciones",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Collage",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Bordados",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Tejido",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Obras",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
+    {
+        slug: "la-bordadora",
+        img: "Composicion",
+        title: "NUEVA OBRA",
+        ancho: "21",
+        alto: "48",
+    },
 ]
 
 const baseGrid = [
