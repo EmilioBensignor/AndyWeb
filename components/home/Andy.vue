@@ -11,20 +11,28 @@
                 </template>
             </div>
         </div>
-        <DefaultContent>
-            <NuxtImg src="/images/home/Andy-Loisch.png" alt="Andy Loisch" class="w-full" />
-            <div>
+        <div class="xl:flex xl:flex-row-reverse xl:justify-between relative">
+            <picture class="xl:max-w-[475px] xl:absolute xl:top-[1.5rem] xl:-right-[2rem] xl:z-[2] xl:rotate-[4deg]">
+                <source media="(min-width: 1080px)" srcset="/images/home/Andy-Loisch-Desktop.jpg" />
+                <NuxtImg src="/images/home/Andy-Loisch.png" alt="Andy Loisch Textil Art"
+                    class="w-full xl:max-w-[475px]" />
+            </picture>
+            <NuxtImg src="/images/home/Pin.png" alt="Pin"
+                class="hidden xl:inline xl:w-24 xl:absolute right-[7rem] z-[3] -rotate-[100deg]" />
+            <div class="w-full">
                 <div v-for="(frase, index) in frases" :key="index"
-                    class="border-b first-of-type:border-t border-light py-8 px-5 md:px-10 transition-all duration-300 overflow-hidden relative"
+                    class="border-b first-of-type:border-t border-light py-8 xl:py-16 px-5 md:px-10 xl:px20 transition-all duration-300 overflow-hidden relative"
                     @mouseenter="hoveredIndex = index" @mouseleave="hoveredIndex = null">
                     <div class="absolute inset-0 w-full h-full overflow-hidden">
                         <NuxtImg :src="frase.textura" alt="Textura" class="w-full h-full object-cover texture-image"
                             :class="{ 'active': hoveredIndex === index }" />
                     </div>
-                    <p class="relative z-10 font-semibold md:text-2xl">{{ frase.texto }}</p>
+                    <DefaultContent>
+                        <p class="relative z-10 font-semibold md:text-2xl xl:text-3xl">{{ frase.texto }}</p>
+                    </DefaultContent>
                 </div>
             </div>
-        </DefaultContent>
+        </div>
     </DefaultSection>
 </template>
 
