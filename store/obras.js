@@ -164,6 +164,55 @@ export const useObrasStore = defineStore('obras', {
                     this.subscription = null;
                 }
             };
+        },
+
+        async fetchObraBySlug(slug) {
+            try {
+                const existingObra = this.obras.find(o => o.slug === slug);
+                if (existingObra) {
+                    return { obra: existingObra, error: null };
+                }
+                
+                const supabase = useSupabaseClient();
+                const { data, error: supabaseError } = await supabase
+                    .from('obras')
+                    .select(`
+                        *,
+                        categorias(id, nombre),
+                        obras_imagenes(id, url, posicion, es_principal)
+                    `)
+                    .eq('slug', slug)
+                    .single();
+
+                if (supabaseError) {
+                    return { obra: null, error: supabaseError };
+                }
+
+                if (data) {
+                    const imagenes = data.obras_imagenes ? data.obras_imagenes.map(img => img.url) : [];
+                    const imagenPrincipal = data.obras_imagenes ?
+                        data.obras_imagenes.find(img => img.es_principal)?.url : null;
+
+                    const processedObra = {
+                        ...data,
+                        imagenes,
+                        imagen_url: imagenPrincipal || (imagenes.length > 0 ? imagenes[0] : null),
+                        categoria: data.categorias ? data.categorias.nombre : null,
+                        categoria_id: data.categoria_id || (data.categorias ? data.categorias.id : null)
+                    };
+                    
+                    if (!this.obras.find(o => o.id === processedObra.id)) {
+                        this.obras = [processedObra, ...this.obras];
+                    }
+                    
+                    return { obra: processedObra, error: null };
+                }
+                
+                return { obra: null, error: null };
+            } catch (err) {
+                console.error('Error fetching obra by slug:', err);
+                return { obra: null, error: err };
+            }
         }
     }
 });
