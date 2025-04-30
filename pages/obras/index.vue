@@ -2,7 +2,7 @@
     <DefaultSection
         class="bg-[url('/images/backgrounds/Flores-Andy-Loisch.jpg')] bg-cover bg-center bg-no-repeat pt-20 md:pt-32 xl:pt-44 px-5 md:px-10 xl:px-20 pb-72">
         <DefaultContent class="flex flex-col items-center gap-3 md:gap-5 xl:gap-8">
-            <h1 class="text-xl md:text-[2rem] xl:text-[2.5rem] text-center font-medium text-light">MIS OBRAS</h1>
+            <DefaultH1>MIS OBRAS</DefaultH1>
 
             <div class="w-full flex flex-col xl:flex-row items-center gap-3">
                 <div class="w-full flex flex-col md:flex-row items-center gap-3">
@@ -32,22 +32,19 @@
         </DefaultContent>
     </DefaultSection>
 
-    <DefaultSection class="relative z-[3] gradient-two-way py-20 md:py-24 xl:py-36 2xl:py-48 px-5 md:px-10 -mt-[18.75rem] md:-mt-[17rem] -mb-[9.5rem] md:-mb-[16rem]">
+    <DefaultSection
+        class="relative z-[3] gradient-two-way py-20 md:py-24 xl:py-36 2xl:py-48 px-5 md:px-10 -mt-[18.75rem] md:-mt-[17rem] -mb-[9.5rem] md:-mb-[16rem]">
         <DefaultContent>
-            <ClientOnly v-if="obrasStore.isLoading">
-                <div class="flex justify-center items-center py-12">
+            <ClientOnly>
+                <div v-if="obrasStore.isLoading" class="flex justify-center items-center py-12">
                     <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
                 </div>
-            </ClientOnly>
 
-            <ClientOnly v-else-if="obrasFiltradas.length === 0">
-                <div class="min-h-screen text-center py-12">
+                <div v-else-if="obrasFiltradas.length === 0" class="min-h-screen text-center py-12">
                     <p class="text-lg text-light">No se encontraron obras con los filtros seleccionados</p>
                 </div>
-            </ClientOnly>
 
-            <ClientOnly v-else>
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4 xl:gap-5 2xl:gap-7">
+                <div v-else class="flex flex-wrap justify-center gap-2 md:gap-4 xl:gap-5 2xl:gap-7">
                     <ObraCard v-for="obra in obrasFiltradas" :key="obra.id" :obra="obra"
                         :to="`${ROUTE_NAMES.OBRAS}/${obra.slug}`" />
                 </div>

@@ -11,13 +11,13 @@
                 </div>
 
                 <div v-else-if="error" class="py-32 text-center">
-                    <h1 class="text-2xl text-light mb-4">Error al cargar la obra</h1>
+                    <DefaultH1>Error al cargar la obra</DefaultH1>
                     <p class="text-light">{{ error }}</p>
 
                 </div>
 
                 <div v-else-if="!obra" class="py-32 text-center">
-                    <h1 class="text-2xl text-light mb-4">Obra no encontrada</h1>
+                    <DefaultH1>Obra no encontrada</DefaultH1>
                 </div>
 
                 <div v-else class="flex flex-col gap-6">
@@ -25,7 +25,7 @@
                         <div class="w-max bg-secondary border border-light rounded-full py-[0.625rem] px-6">
                             <p class="text-sm font-medium">{{ obra.categoria.toUpperCase() }}</p>
                         </div>
-                        <h1 class="text-2xl">{{ obra.titulo.toUpperCase() }}</h1>
+                        <DefaultH1>{{ obra.titulo.toUpperCase() }}</DefaultH1>
                     </div>
                     <div>
                         <!-- TODO: Hacer galeria de imagenes con v-if -->
