@@ -1,5 +1,5 @@
 <template>
-    <DefaultSection class="relative z-[3] bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% pt-20 px-5 pb-44">
+    <DefaultSection class="relative z-[3] bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% pt-20 md:pt-32 xl:pt-44 2xl:pt-52 px-5 md:px-10 xl:px-20 2xl:px-32 pb-72">
         <DefaultContent class="flex flex-col gap-6">
             <ClientOnly>
                 <NuxtLink :to="ROUTE_NAMES.OBRAS" class="flex items-center gap-3 text-xs">
