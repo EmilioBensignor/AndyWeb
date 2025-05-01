@@ -1,9 +1,9 @@
 <template>
     <DefaultSection
         class="relative z-[3] bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% pt-20 md:pt-32 xl:pt-40 2xl:pt-44 px-5 md:px-10 xl:px-20 2xl:px-32 pb-44 md:pb-[15rem] xl:pb-[18.75rem]">
-        <DefaultContent class="flex flex-col gap-6">
+        <DefaultContent class="flex flex-col gap-6 md:gap-8 xl:gap-14">
             <ClientOnly>
-                <NuxtLink :to="ROUTE_NAMES.OBRAS" class="flex items-center gap-3 text-xs">
+                <NuxtLink :to="ROUTE_NAMES.OBRAS" class="flex items-center gap-3 text-xs md:text-base 2xl:text-xl">
                     <Icon name="tabler:arrow-narrow-left" size="1.5rem" />
                     VOLVER A OBRAS
                 </NuxtLink>
@@ -21,36 +21,40 @@
                     <DefaultH1>Obra no encontrada</DefaultH1>
                 </div>
 
-                <div v-else class="flex flex-col gap-6">
-                    <div class="flex flex-col gap-4">
-                        <div class="w-max bg-secondary border border-light rounded-full py-[0.625rem] px-6">
-                            <p class="text-sm font-medium">{{ obra.categoria.toUpperCase() }}</p>
+                <div v-else class="flex flex-col xl:flex-row-reverse gap-6 md:gap-8 xl:gap-11">
+                    <div class="xl:w-[40%] flex flex-col gap-4 md:gap-7">
+                        <div
+                            class="w-max bg-secondary border border-light rounded-full py-[0.625rem] md:py-[0.875rem] px-6 md:px-8">
+                            <p class="text-sm md:text-base xl:text-lg 2xl:text-2xl font-medium">{{ obra.categoria.toUpperCase() }}
+                            </p>
                         </div>
                         <DefaultH1 class="text-start">{{ obra.titulo.toUpperCase() }}</DefaultH1>
+                        <p class="hidden xl:inline text-xl 2xl:text-2xl">{{ obra.descripcion }}</p>
+                        <p class="hidden xl:inline text-xl 2xl:text-2xl">{{ obra.ancho }} x {{ obra.alto }} cm</p>
+                        <p class="hidden xl:inline text-xl 2xl:text-2xl">{{ obra.anio }}</p>
                     </div>
 
-                    <div>
-                        <div v-if="sortedImagenes.length > 1" class="flex flex-col gap-6">
-                            <div class="relative overflow-hidden px-7">
+                    <div class="xl:w-[60%]">
+                        <div v-if="sortedImagenes.length > 1" class="flex flex-col gap-6 md:gap-8">
+                            <div class="relative overflow-hidden px-7 md:px-8">
                                 <NuxtImg :src="imagenSeleccionada" :alt="obra.titulo"
-                                    class="w-max h-[232px] border border-light object-cover transition-all duration-500" />
+                                    class="w-max h-[14.5rem] md:h-[27.375rem] border border-light object-cover transition-all duration-500" />
 
                                 <button @click="prevImagen"
-                                    class="flex justify-center items-center absolute top-1/2 left-0 -translate-y-1/2">
+                                    class="flex justify-center items-center absolute top-1/2 -left-1 -translate-y-1/2">
                                     <Icon name="tabler:chevron-left" size="2rem" />
                                 </button>
 
                                 <button @click="nextImagen"
-                                    class="flex justify-center items-center absolute top-1/2 right-0 -translate-y-1/2">
+                                    class="flex justify-center items-center absolute top-1/2 -right-1 -translate-y-1/2">
                                     <Icon name="tabler:chevron-right" size="2rem" />
                                 </button>
                             </div>
 
-                            <div
-                                class="flex gap-4 overflow-x-auto custom-scroll pb-3">
+                            <div class="xl:hidden flex gap-4 md:gap-6 overflow-x-auto custom-scroll pb-3 md:pb-4">
                                 <button v-for="(img, i) in sortedImagenes" :key="i"
                                     @click="imagenSeleccionada = img.url"
-                                    class="w-[5.25rem] h-[5.25rem] border overflow-hidden shrink-0">
+                                    class="w-[5.25rem] md:w-44 h-[5.25rem] md:h-[8.25rem] border overflow-hidden shrink-0">
                                     <NuxtImg :src="img.url" class="w-full h-full object-cover" />
                                 </button>
                             </div>
@@ -58,15 +62,26 @@
 
                         <div v-else class="border border-light">
                             <NuxtImg :src="obra.imagen_url" :alt="obra.titulo"
-                                class="w-full max-h-[232px] object-cover" />
+                                class="w-full h-[14.5rem] md:h-[27.375rem] object-cover" />
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-5">
-                        <p class="text-sm">{{ obra.descripcion }}</p>
-                        <p class="text-sm">{{ obra.ancho }} x {{ obra.alto }} cm</p>
-                        <p class="text-sm">{{ obra.anio }}</p>
+                    <div class="xl:hidden flex flex-col md:flex-row gap-5 md:gap-8">
+                        <div class="md:w-1/2">
+                            <p class="text-sm md:text-base">{{ obra.descripcion }}</p>
+                        </div>
+                        <div class="md:w-1/2 flex flex-col gap-5">
+                            <p class="text-sm md:text-base">{{ obra.ancho }} x {{ obra.alto }} cm</p>
+                            <p class="text-sm md:text-base">{{ obra.anio }}</p>
+                        </div>
                     </div>
+
+                </div>
+                <div v-if="sortedImagenes.length > 1" class="hidden xl:flex gap-4 md:gap-6 overflow-x-auto custom-scroll pb-3 md:pb-4">
+                    <button v-for="(img, i) in sortedImagenes" :key="i" @click="imagenSeleccionada = img.url"
+                        class="w-44 h-[14.5rem] 2xl:h-44 border overflow-hidden shrink-0">
+                        <NuxtImg :src="img.url" class="w-full h-full object-cover" />
+                    </button>
                 </div>
             </ClientOnly>
         </DefaultContent>
