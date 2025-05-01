@@ -13,8 +13,6 @@ export default {
             colors: {
                 primary: "#A91F25",
                 secondary: "#5B1212",
-                accent: "#C5981B",
-                sikaSecondary: "#99760A",
                 dark: "#191919",
                 darkOpacity: "rgba(25, 25, 25, 0.6)",
                 light: "#F6F1E4",

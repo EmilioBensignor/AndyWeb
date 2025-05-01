@@ -1,6 +1,6 @@
 <template>
     <DefaultSection
-        class="relative z-[3] bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% pt-20 md:pt-32 xl:pt-44 2xl:pt-52 px-5 md:px-10 xl:px-20 2xl:px-32 pb-72">
+        class="relative z-[3] bg-gradient-to-b from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% pt-20 md:pt-32 xl:pt-40 2xl:pt-44 px-5 md:px-10 xl:px-20 2xl:px-32 pb-44 md:pb-[15rem] xl:pb-[18.75rem]">
         <DefaultContent class="flex flex-col gap-6">
             <ClientOnly>
                 <NuxtLink :to="ROUTE_NAMES.OBRAS" class="flex items-center gap-3 text-xs">
@@ -30,29 +30,27 @@
                     </div>
 
                     <div>
-                        <div v-if="sortedImagenes.length > 1" class="flex flex-col gap-4">
-                            <div class="relative border border-light overflow-hidden">
+                        <div v-if="sortedImagenes.length > 1" class="flex flex-col gap-6">
+                            <div class="relative overflow-hidden px-7">
                                 <NuxtImg :src="imagenSeleccionada" :alt="obra.titulo"
-                                    class="w-full max-h-[232px] object-cover transition-all duration-500" />
+                                    class="w-max h-[232px] border border-light object-cover transition-all duration-500" />
 
                                 <button @click="prevImagen"
-                                    class="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition">
-                                    <Icon name="tabler:chevron-left" />
+                                    class="flex justify-center items-center absolute top-1/2 left-0 -translate-y-1/2">
+                                    <Icon name="tabler:chevron-left" size="2rem" />
                                 </button>
 
                                 <button @click="nextImagen"
-                                    class="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition">
-                                    <Icon name="tabler:chevron-right" />
+                                    class="flex justify-center items-center absolute top-1/2 right-0 -translate-y-1/2">
+                                    <Icon name="tabler:chevron-right" size="2rem" />
                                 </button>
                             </div>
 
-                            <div class="flex gap-2 overflow-x-auto">
+                            <div
+                                class="flex gap-4 overflow-x-auto custom-scroll pb-3">
                                 <button v-for="(img, i) in sortedImagenes" :key="i"
                                     @click="imagenSeleccionada = img.url"
-                                    class="border rounded overflow-hidden w-[60px] h-[60px] shrink-0" :class="{
-                                        'border-primary': imagenSeleccionada === img.url,
-                                        'border-light': imagenSeleccionada !== img.url
-                                    }">
+                                    class="w-[5.25rem] h-[5.25rem] border overflow-hidden shrink-0">
                                     <NuxtImg :src="img.url" class="w-full h-full object-cover" />
                                 </button>
                             </div>
@@ -132,3 +130,18 @@ function nextImagen() {
     imagenSeleccionada.value = sortedImagenes.value[newIndex].url;
 }
 </script>
+
+<style scoped>
+.custom-scroll::-webkit-scrollbar {
+    height: 0.375rem;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: #191919;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #A91F25;
+    border-radius: 10px;
+}
+</style>
