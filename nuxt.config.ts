@@ -33,8 +33,8 @@ export default defineNuxtConfig({
   // App
   site: {
     url: 'https://andyloisch.com.ar',
-    name: 'AndyLoisch',
-    description: 'AndyLoisch',
+    name: 'Andy Loisch',
+    description: 'Andy Loisch es una artista textil Argentina especializada en el bordado',
     defaultLocale: 'es',
   },
   plugins: [
