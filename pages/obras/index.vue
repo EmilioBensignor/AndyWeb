@@ -1,6 +1,6 @@
 <template>
     <DefaultSection
-        class="bg-[url('/images/backgrounds/Flores-Andy-Loisch.jpg')] bg-cover bg-center bg-no-repeat pt-20 md:pt-32 xl:pt-44 2xl:pt-52 px-5 md:px-10 xl:px-20 2xl:px-32 pb-72">
+        class="bg-[url('/images/backgrounds/Textura-Andy-Loisch.webp')] bg-cover bg-center bg-no-repeat pt-20 md:pt-32 xl:pt-44 2xl:pt-52 px-5 md:px-10 xl:px-20 2xl:px-32 pb-72">
         <DefaultContent class="flex flex-col items-center gap-3 md:gap-5 xl:gap-8">
             <DefaultH1>MIS OBRAS</DefaultH1>
 
