@@ -23,8 +23,8 @@
 }
 
 .scroll-reveal h2 span {
-    animation-range-start: contain 30vh;
-    animation-range-end: contain 60vh;
+    animation-range-start: contain 20vh;
+    animation-range-end: contain 50vh;
 }
 
 @keyframes scroll-reveal {
