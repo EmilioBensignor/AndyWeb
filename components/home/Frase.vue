@@ -17,7 +17,7 @@
 .scroll-reveal span {
     background-repeat: no-repeat;
     background-size: 0% 100%;
-    background-image: linear-gradient(90deg, red, red);
+    background-image: linear-gradient(90deg, white, white);
     animation: scroll-reveal linear forwards;
     animation-timeline: view();
 }
