@@ -1,5 +1,5 @@
 <template>
-    <header class="w-full fixed top-0 z-10 bg-darkOpacity py-4 md:py-6 xl:py-12 px-5 md:px-10 xl:px-20 2xl:px-32"
+    <header class="w-full fixed top-0 z-10 bg-darkOpacity py-4 md:py-6 xl:py-8 px-5 md:px-10 xl:px-20 2xl:px-32"
         ref="headerRef">
         <DefaultContent class="flex justify-between items-center">
             <button @click.stop="toggleMenu"
@@ -13,10 +13,9 @@
                     :class="{ '-rotate-45 -translate-y-[0.35rem]': isMenuOpen }"></span>
             </button>
 
-            <NuxtLink :to="ROUTE_NAMES.HOME">
-                <h1 class="text-light text-xl xl:text-[2.5rem] 2xl:text-[3.25rem]">ANDY LOISCH</h1>
-            </NuxtLink>
-
+            <h1 class="sr-only">ANDY LOISCH</h1>
+            
+            <DefaultLogo />
 
             <nav class="flex items-center gap-8 2xl:gap-10">
                 <ul class="hidden xl:flex items-center gap-8 2xl:gap-10">

@@ -1,6 +1,6 @@
 <template>
     <DefaultSection
-        class="obras-section h-[200vh] md:h-[250vh] xl:h-[280vh] bg-gradient-to-t from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% md:to-5% px-5 md:px-10 xl:px-20 2xl:px-32 -mb-60 md:-mb-80">
+        class="obras-section h-[200vh] md:h-[250vh] xl:h-[280vh] bg-gradient-to-t from-[rgba(25,25,25,0)] from-0% to-[rgba(25,25,25,1)] to-10% md:to-5% px-5 md:px-10 xl:px-20 2xl:px-32 -mb-56 md:-mb-80">
         <DefaultContent class="h-full relative pt-52 md:pt-60 xl:pt-72">
             <h2
                 class="sticky top-[50%] md:top-[60%] text-center text-4xl md:text-6xl font-semibold text-light -translate-y-1/2 pb-52 md:pb-60 xl:pb-72">
