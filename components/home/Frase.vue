@@ -4,8 +4,7 @@
             <DefaultContent class="scroll-reveal">
                 <h2 class="text-xl md:text-4xl xl:text-[2.5rem] 2xl:text-[3.25rem] xl:leading-none tracking-widest text-light">
                     <span class="text-[hsl(0_0%_100%_/_0.2)] bg-clip-text">
-                        ESTA ES UNA FRASE SOBRE
-                        INSPIRACION, ARTE Y VIDA COTIDIANA
+                        CADA OBRA, ES UN PEDACITO DE MI MUNDO, MIS VIAJES, MIS RECUERDOS.
                     </span>
                 </h2>
             </DefaultContent>

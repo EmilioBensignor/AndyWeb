@@ -23,12 +23,12 @@
                 <div v-for="(frase, index) in frases" :key="index"
                     class="border-b first-of-type:border-t border-light py-8 xl:py-16 px-5 md:px-10 xl:px-20 transition-all duration-300 overflow-hidden relative"
                     @mouseenter="hoveredIndex = index" @mouseleave="hoveredIndex = null">
-                    <div class="absolute inset-0 w-full h-full overflow-hidden">
-                        <NuxtImg :src="frase.textura" alt="Textura" class="w-full h-full object-cover texture-image"
+                    <div class="w-full h-full absolute inset-0 overflow-hidden">
+                        <NuxtImg :src="`/images/backgrounds/Textura-${index + 1}.jpg`" alt="Textura" class="w-full h-full object-cover rotate-90 texture-image"
                             :class="{ 'active': hoveredIndex === index }" />
                     </div>
                     <DefaultContent>
-                        <p class="relative z-10 font-semibold md:text-2xl xl:text-3xl 2xl:text-[2rem]">{{ frase.texto }}</p>
+                        <p class="textShadow relative z-10 text-center xl:text-start font-semibold md:text-2xl xl:text-3xl 2xl:text-[2rem]">{{ frase.texto }}</p>
                     </DefaultContent>
                 </div>
             </div>
@@ -41,20 +41,16 @@ const hoveredIndex = ref(null);
 
 const frases = [
     {
-        texto: 'BORDO, CORTO, PEGO, OBSERVO',
-        textura: '/images/backgrounds/Textura-1.jpg'
+        texto: 'JUGABA CON HILOS DESDE CHICA',
     },
     {
-        texto: 'ENCUENTRO BELLEZA EN LO IMPERFECTO',
-        textura: '/images/backgrounds/Textura-1.jpg'
+        texto: 'DESCUBRÍ QUE EL ARTE ME APASIONA',
     },
     {
-        texto: 'BORDO, CORTO, PEGO, OBSERVO',
-        textura: '/images/backgrounds/Textura-1.jpg'
+        texto: 'VIAJAR ME ENSEÑÓ A MIRAR DISTINTO',
     },
     {
-        texto: 'ME INSPIRAN LOS OBJETOS OLVIDADOS',
-        textura: '/images/backgrounds/Textura-1.jpg'
+        texto: 'ME INSPIRAN LOS OBJETOS, LAS HISTORIAS',
     },
 ]
 </script>
@@ -81,7 +77,11 @@ const frases = [
 }
 
 .texture-image.active {
-    opacity: 1;
+    opacity: 0.7;
     transform: translateY(0);
+}
+
+.textShadow {
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
 }
 </style>
