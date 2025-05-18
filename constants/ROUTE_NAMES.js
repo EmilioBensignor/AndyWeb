@@ -2,5 +2,5 @@ export const ROUTE_NAMES = {
     HOME: "/",
     OBRAS: "/obras",
     INSPIRACIONES: "/inspiraciones",
-    INSTAGRAM: "/"
+    INSTAGRAM: "https://www.instagram.com/andyloischtextilart/"
 };
