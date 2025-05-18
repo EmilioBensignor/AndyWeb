@@ -5,7 +5,7 @@
             <div class="flex flex-col items-center gap-2 md:gap-3 xl:gap-4">
                 <DefaultH1>INSPIRACIONES</DefaultH1>
                 <p class="text-center text-xs md:text-base xl:text-2xl 2xl:text-[2rem]">
-                    VIAJO, DESCUBRO, OBSERVO Y CAPTURO. CADA RINCÓN ES UNA NUEVA IDEA.
+                    VIAJO, DESCUBRO, OBSERVO Y CAPTURO
                 </p>
             </div>
 

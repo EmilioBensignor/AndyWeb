@@ -41,16 +41,16 @@ const hoveredIndex = ref(null);
 
 const frases = [
     {
-        texto: 'JUGABA CON HILOS DESDE CHICA',
+        texto: 'AMO BORDAR, BORDAR ME CALMA',
     },
     {
-        texto: 'DESCUBRÍ QUE EL ARTE ME APASIONA',
+        texto: 'BORDO Y NO DESBORDO',
     },
     {
-        texto: 'VIAJAR ME ENSEÑÓ A MIRAR DISTINTO',
+        texto: 'FLUYEN Y CONFLUYEN MIS PASIONES',
     },
     {
-        texto: 'ME INSPIRAN LOS OBJETOS, LAS HISTORIAS',
+        texto: 'HILOS, COLORES Y TEXTURAS',
     },
 ]
 </script>
