@@ -24,7 +24,7 @@
                     class="border-b first-of-type:border-t border-light py-8 xl:py-16 px-5 md:px-10 xl:px-20 transition-all duration-300 overflow-hidden relative"
                     @mouseenter="hoveredIndex = index" @mouseleave="hoveredIndex = null">
                     <div class="w-full h-full absolute inset-0 overflow-hidden">
-                        <NuxtImg :src="`/images/backgrounds/Textura-${index + 1}.jpg`" alt="Textura" class="w-full h-full object-cover rotate-90 texture-image"
+                        <NuxtImg :src="`/images/backgrounds/Textura-${index + 1}.webp`" alt="Textura" class="w-full h-full object-cover rotate-90 texture-image"
                             :class="{ 'active': hoveredIndex === index }" />
                     </div>
                     <DefaultContent>

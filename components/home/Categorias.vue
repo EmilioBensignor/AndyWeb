@@ -11,7 +11,7 @@
                     :class="['w-full max-w-[180px] md:max-w-[250px] 2xl:max-w-[360px] md:h-[340px] 2xl:h-[420px] absolute translate-y-[200px]',
                     index === 0 ? 'left-0 top-[30vh]' : index === 1 ? 'right-0 top-[80vh] md:top-[90vh] xl:top-[100vh]' : 'left-0 top-[130vh] md:top-[150vh] xl:top-[170vh] xl:left-0 xl:right-0 xl:mx-auto']">
                     <div class="h-full bg-light rounded-[20px] preserve-3d perspective-800">
-                        <NuxtImg :src="`/images/home/${card.img}-Andy-Loisch.jpg`" :alt="`${card.title} Andy Loisch`"
+                        <NuxtImg :src="`/images/categorias/${card.img}-Andy-Loisch.webp`" :alt="`${card.title} Andy Loisch`"
                             class="w-full h-full md:max-h-[260px] 2xl:max-h-[340px] rounded-t-[20px] object-cover" />
                         <div class="py-6 text-center">
                             <h3 class="md:text-2xl 2xl:text-3xl font-medium text-secondary">{{ card.title }}</h3>
@@ -33,11 +33,11 @@ const cards = [
     },
     {
         title: "GRAN FORMATO",
-        img: "Pequeno-Formato",
+        img: "Gran-Formato",
     },
     {
         title: "OBJETOS",
-        img: "Pequeno-Formato",
+        img: "Objetos",
     },
 ]
 
