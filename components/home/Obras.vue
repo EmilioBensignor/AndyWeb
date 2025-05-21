@@ -7,7 +7,7 @@
                 <NuxtLink :to="`${ROUTE_NAMES.OBRAS}/${obra.slug}`" v-for="(obra, index) in obras" :key="index"
                     :class="[baseGrid[index], responsiveGrid[index]]"
                     class="max-h-[112px] md:max-h-[232px] 2xl:max-h-[300px] border border-light relative group overflow-hidden">
-                    <img :src="`/images/obras/${obra.imagen}-Andy-Loisch.png`" :alt="`${obra.titulo} Andy Loisch`"
+                    <img :src="`/images/obras/${obra.imagen}-Andy-Loisch.webp`" :alt="`${obra.titulo} Andy Loisch`"
                         class="w-full h-full object-cover" />
                     <div
                         class="w-full hidden xl:flex flex-col gap-2 absolute bottom-0 left-0 bg-darkOpacity transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 py-2 2xl:py-3 px-4 2xl:px-5">
