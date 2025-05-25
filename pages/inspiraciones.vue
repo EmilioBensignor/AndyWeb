@@ -30,7 +30,7 @@
     </DefaultSection>
 
     <DefaultSection
-        class="min-h-[35vh] relative z-[3] gradient-two-way py-20 md:py-24 xl:py-36 2xl:py-48 px-5 md:px-10 -mt-[17rem] md:-mt-[17rem] -mb-[8rem] md:-mb-[16rem]">
+        class="min-h-[30vh] relative z-[3] gradient-two-way py-8 md:py-14 xl:py-20 2xl:py-28 px-5 md:px-10 -mt-[17rem] md:-mt-[17rem] -mb-[8rem] md:-mb-[16rem]">
         <DefaultContent>
             <ClientOnly>
                 <div v-if="isLoading" class="w-full flex justify-center">

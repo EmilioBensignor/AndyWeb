@@ -59,7 +59,7 @@
     </DefaultSection>
 
     <DefaultSection
-        class="relative z-[3] gradient-two-way py-20 md:py-20 xl:py-24 2xl:py-32 px-5 md:px-10 -mt-[17rem] md:-mt-[17rem] -mb-[8rem] md:-mb-[16rem]">
+        class="relative z-[3] gradient-two-way py-20 md:py-20 xl:py-32 2xl:py-44 px-5 md:px-10 -mt-[17rem] md:-mt-[17rem] -mb-[10rem] md:-mb-[16rem] xl:-mb-[21rem]">
         <DefaultContent>
             <ClientOnly>
                 <div v-if="obrasStore.isLoading" class="flex justify-center items-center py-12">
