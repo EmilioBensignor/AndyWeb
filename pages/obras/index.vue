@@ -87,11 +87,75 @@ import { useObrasStore } from '~/store/obras'
 
 const categoriasStore = useCategoriasStore()
 const obrasStore = useObrasStore()
+const route = useRoute()
+const router = useRouter()
 
 const categoriaSeleccionada = ref(null)
 const busqueda = ref('')
 const showSearchXL = ref(false)
 const mostrarAbreviados = ref(false)
+
+// Mapeo estático de nombres a slugs
+const categoryNameToSlug = {
+    "Pequeño formato": "pequeno-formato",
+    "Gran formato": "gran-formato",
+    "Objeto": "objetos"
+}
+
+// Mapeo inverso de slugs a nombres
+const categorySlugToName = {
+    "pequeno-formato": "Pequeño formato",
+    "gran-formato": "Gran formato",
+    "objetos": "Objeto"
+}
+
+// Función para obtener UUID por nombre de categoría
+const getCategoryIdByName = (categoryName) => {
+    const categorias = categoriasStore.getCategorias
+    const categoria = categorias.find(cat => cat.nombre === categoryName)
+    return categoria ? categoria.id : null
+}
+
+// Función para obtener nombre por UUID de categoría  
+const getCategoryNameById = (categoryId) => {
+    const categorias = categoriasStore.getCategorias
+    const categoria = categorias.find(cat => cat.id === categoryId)
+    return categoria ? categoria.nombre : null
+}
+
+// Función para inicializar categoría desde query params (opcional)
+const initializeCategoryFromQuery = () => {
+    const categorySlug = route.query.categoria
+    if (categorySlug && categorySlugToName[categorySlug]) {
+        const categoryName = categorySlugToName[categorySlug]
+        const categoryId = getCategoryIdByName(categoryName)
+        if (categoryId) {
+            categoriaSeleccionada.value = categoryId
+            console.log(`[Obras] Categoría inicializada desde query: ${categorySlug} -> ${categoryName} -> ID: ${categoryId}`)
+        }
+    }
+    // Si no hay query param, categoriaSeleccionada.value permanece null (sin filtros)
+}
+
+// Función para actualizar URL cuando cambia la categoría (opcional)
+const updateUrlWithCategory = (categoryId) => {
+    const newQuery = { ...route.query }
+
+    if (categoryId) {
+        const categoryName = getCategoryNameById(categoryId)
+        if (categoryName && categoryNameToSlug[categoryName]) {
+            newQuery.categoria = categoryNameToSlug[categoryName]
+        }
+    } else {
+        // Si no hay categoría seleccionada, remover el query param
+        delete newQuery.categoria
+    }
+
+    // Solo actualizar si es diferente para evitar navegación innecesaria
+    if (JSON.stringify(newQuery) !== JSON.stringify(route.query)) {
+        router.replace({ query: newQuery })
+    }
+}
 
 const toggleSearchXL = () => {
     if (!showSearchXL.value) {
@@ -123,10 +187,18 @@ let unsubscribeObras
 let unsubscribeCategorias
 
 onMounted(async () => {
+    // Cargar datos
     await Promise.all([
         categoriasStore.fetchCategorias(),
         obrasStore.fetchObras()
     ])
+
+    // Inicializar categoría desde query después de cargar las categorías
+    nextTick(() => {
+        initializeCategoryFromQuery()
+    })
+
+    // Setup realtime updates
     unsubscribeObras = obrasStore.setupRealtimeUpdates()
     unsubscribeCategorias = categoriasStore.setupRealtimeUpdates()
 })
@@ -140,9 +212,13 @@ const categorias = computed(() => categoriasStore.getCategorias)
 
 const obrasFiltradas = computed(() => {
     let obras = obrasStore.getObras
+
+    // Filtrar por categoría solo si hay una seleccionada
     if (categoriaSeleccionada.value) {
         obras = obras.filter(obra => obra.categoria_id === categoriaSeleccionada.value)
     }
+
+    // Filtrar por búsqueda solo si hay texto
     if (busqueda.value.trim()) {
         const termino = busqueda.value.toLowerCase().trim()
         obras = obras.filter(obra =>
@@ -150,6 +226,7 @@ const obrasFiltradas = computed(() => {
             obra.descripcion?.toLowerCase().includes(termino)
         )
     }
+
     return obras
 })
 
@@ -161,8 +238,24 @@ const toggleCategoria = (categoriaId) => {
     }
 }
 
-watch(categoriaSeleccionada, () => {
+// Watchers para mantener sincronizada la URL
+watch(categoriaSeleccionada, (newValue) => {
     busqueda.value = ''
+    updateUrlWithCategory(newValue)
+})
+
+// Watcher para cambios en la query de la ruta (navegación back/forward)
+watch(() => route.query.categoria, (newCategorySlug) => {
+    if (newCategorySlug && categorySlugToName[newCategorySlug]) {
+        const categoryName = categorySlugToName[newCategorySlug]
+        const newCategoryId = getCategoryIdByName(categoryName)
+        if (newCategoryId !== categoriaSeleccionada.value) {
+            categoriaSeleccionada.value = newCategoryId
+        }
+    } else if (!newCategorySlug && categoriaSeleccionada.value) {
+        // Si no hay slug en la query, limpiar la selección
+        categoriaSeleccionada.value = null
+    }
 })
 
 function abreviar(nombre) {
