@@ -25,7 +25,8 @@
                     <div class="xl:w-[40%] flex flex-col gap-4 md:gap-7">
                         <div
                             class="w-max bg-secondary border border-light rounded-full py-[0.625rem] md:py-[0.875rem] px-6 md:px-8">
-                            <p class="text-sm md:text-base xl:text-lg 2xl:text-2xl font-medium">{{ obra.categoria.toUpperCase() }}
+                            <p class="text-sm md:text-base xl:text-lg 2xl:text-2xl font-medium">{{
+                                obra.categoria.toUpperCase() }}
                             </p>
                         </div>
                         <DefaultH1 class="text-start">{{ obra.titulo.toUpperCase() }}</DefaultH1>
@@ -77,7 +78,8 @@
                     </div>
 
                 </div>
-                <div v-if="sortedImagenes.length > 1" class="hidden xl:flex gap-4 md:gap-6 overflow-x-auto custom-scroll pb-3 md:pb-4">
+                <div v-if="sortedImagenes.length > 1"
+                    class="hidden xl:flex gap-4 md:gap-6 overflow-x-auto custom-scroll pb-3 md:pb-4">
                     <button v-for="(img, i) in sortedImagenes" :key="i" @click="imagenSeleccionada = img.url"
                         class="w-44 h-[14.5rem] 2xl:h-44 border overflow-hidden shrink-0">
                         <NuxtImg :src="img.url" class="w-full h-full object-cover" />
@@ -104,29 +106,30 @@ const sortedImagenes = ref([]);
 
 onMounted(async () => {
     try {
-        const obras = obrasStore.getObras;
-        if (obras.length > 0) {
-            obra.value = obras.find(o => o.slug === slug);
-        } else {
-            const res = await obrasStore.fetchObraBySlug(slug);
-            obra.value = res.obra;
-            if (res.error) throw res.error;
+        const result = await obrasStore.fetchObraBySlug(slug);
+
+        if (result.error) {
+            throw new Error(result.error);
         }
 
-        if (obra.value) {
-            const imagenesConMeta = obra.value.obras_imagenes || [];
-
-            const principal = imagenesConMeta.find(i => i.es_principal);
-            const otras = imagenesConMeta
-                .filter(i => !i.es_principal)
-                .sort((a, b) => a.posicion - b.posicion);
-
-            sortedImagenes.value = principal ? [principal, ...otras] : [...otras];
-
-            imagenSeleccionada.value = sortedImagenes.value[0]?.url;
+        if (!result.obra) {
+            throw new Error(`Obra "${slug}" no encontrada`);
         }
+
+        obra.value = result.obra;
+
+        const imagenesConMeta = obra.value.obras_imagenes || [];
+
+        const principal = imagenesConMeta.find(i => i.es_principal);
+        const otras = imagenesConMeta
+            .filter(i => !i.es_principal)
+            .sort((a, b) => a.posicion - b.posicion);
+
+        sortedImagenes.value = principal ? [principal, ...otras] : [...otras];
+        imagenSeleccionada.value = sortedImagenes.value[0]?.url || obra.value.imagen_url;
 
     } catch (err) {
+        console.error('Error cargando obra:', err);
         error.value = err.message || 'Error al cargar la obra';
     } finally {
         isLoading.value = false;

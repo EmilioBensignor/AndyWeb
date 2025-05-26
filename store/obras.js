@@ -172,46 +172,61 @@ export const useObrasStore = defineStore('obras', {
                 if (existingObra) {
                     return { obra: existingObra, error: null };
                 }
-                
+
+                if (this.obras.length === 0 && !this.isLoading) {
+                    console.log(`Store vacío, cargando todas las obras para encontrar "${slug}"`);
+                    await this.fetchObras();
+
+                    const obraEncontrada = this.obras.find(o => o.slug === slug);
+                    if (obraEncontrada) {
+                        return { obra: obraEncontrada, error: null };
+                    }
+                }
+
+                console.log(`Obra "${slug}" no encontrada en store, haciendo fetch individual`);
+
                 const supabase = useSupabaseClient();
                 const { data, error: supabaseError } = await supabase
                     .from('obras')
                     .select(`
-                        *,
-                        categorias(id, nombre),
-                        obras_imagenes(id, url, posicion, es_principal)
-                    `)
+                *,
+                categorias(id, nombre),
+                obras_imagenes(id, url, posicion, es_principal)
+            `)
                     .eq('slug', slug)
                     .single();
 
                 if (supabaseError) {
-                    return { obra: null, error: supabaseError };
+                    console.error(`Error buscando obra "${slug}":`, supabaseError);
+                    return { obra: null, error: `Obra "${slug}" no encontrada` };
                 }
 
-                if (data) {
-                    const imagenes = data.obras_imagenes ? data.obras_imagenes.map(img => img.url) : [];
-                    const imagenPrincipal = data.obras_imagenes ?
-                        data.obras_imagenes.find(img => img.es_principal)?.url : null;
-
-                    const processedObra = {
-                        ...data,
-                        imagenes,
-                        imagen_url: imagenPrincipal || (imagenes.length > 0 ? imagenes[0] : null),
-                        categoria: data.categorias ? data.categorias.nombre : null,
-                        categoria_id: data.categoria_id || (data.categorias ? data.categorias.id : null)
-                    };
-                    
-                    if (!this.obras.find(o => o.id === processedObra.id)) {
-                        this.obras = [processedObra, ...this.obras];
-                    }
-                    
-                    return { obra: processedObra, error: null };
+                if (!data) {
+                    return { obra: null, error: `Obra "${slug}" no existe` };
                 }
-                
-                return { obra: null, error: null };
+
+                const imagenes = data.obras_imagenes ? data.obras_imagenes.map(img => img.url) : [];
+                const imagenPrincipal = data.obras_imagenes ?
+                    data.obras_imagenes.find(img => img.es_principal)?.url : null;
+
+                const processedObra = {
+                    ...data,
+                    imagenes,
+                    imagen_url: imagenPrincipal || (imagenes.length > 0 ? imagenes[0] : null),
+                    categoria: data.categorias ? data.categorias.nombre : null,
+                    categoria_id: data.categoria_id || (data.categorias ? data.categorias.id : null)
+                };
+
+                const existingIndex = this.obras.findIndex(o => o.id === processedObra.id);
+                if (existingIndex === -1) {
+                    this.obras.push(processedObra);
+                }
+
+                return { obra: processedObra, error: null };
+
             } catch (err) {
-                console.error('Error fetching obra by slug:', err);
-                return { obra: null, error: err };
+                console.error(`Error crítico buscando obra "${slug}":`, err);
+                return { obra: null, error: err.message || 'Error desconocido' };
             }
         }
     }
