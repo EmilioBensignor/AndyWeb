@@ -1,13 +1,21 @@
-import { useObrasStore } from "~/store/obras";
-import { useInspiracionesStore } from "~/store/inspiraciones";
-
 export default defineNuxtPlugin(async (nuxtApp) => {
-    const obrasStore = useObrasStore();
-    const inspiracionesStore = useInspiracionesStore();
+    // Solo ejecutar en el cliente
+    if (import.meta.server) return;
+    
+    // Usar nextTick para asegurar que Pinia esté inicializada
+    await nextTick();
+    
     const user = useSupabaseUser();
 
     if (user.value) {
         try {
+            // Importar dinámicamente para asegurar que Pinia esté disponible
+            const { useObrasStore } = await import("~/store/obras");
+            const { useInspiracionesStore } = await import("~/store/inspiraciones");
+            
+            const obrasStore = useObrasStore();
+            const inspiracionesStore = useInspiracionesStore();
+
             await Promise.all([
                 obrasStore.fetchObras(),
                 inspiracionesStore.fetchInspiraciones()

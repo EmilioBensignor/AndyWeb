@@ -18,7 +18,7 @@ export const useCategoriasStore = defineStore('categorias', {
         async fetchCategorias() {
             this.loading = true;
 
-            if (process.client) {
+            if (import.meta.client) {
                 const { getFromCache, saveToCache } = useSupabaseCache();
                 const cacheKey = 'categorias_data';
 
@@ -42,7 +42,7 @@ export const useCategoriasStore = defineStore('categorias', {
 
                 this.categorias = data;
 
-                if (process.client) {
+                if (import.meta.client) {
                     const { saveToCache } = useSupabaseCache();
                     saveToCache('categorias_data', data, 60);
                 }
@@ -58,7 +58,7 @@ export const useCategoriasStore = defineStore('categorias', {
         },
 
         async refreshCategoriasInBackground() {
-            if (!process.client) return;
+            if (!import.meta.client) return;
 
             try {
                 const supabase = useSupabaseClient();
@@ -78,7 +78,7 @@ export const useCategoriasStore = defineStore('categorias', {
         },
 
         setupRealtimeUpdates() {
-            if (!process.client) return () => { };
+            if (!import.meta.client) return () => { };
             if (this.subscription) {
                 this.subscription.unsubscribe();
             }
@@ -110,7 +110,7 @@ export const useCategoriasStore = defineStore('categorias', {
                     a.nombre.localeCompare(b.nombre)
                 );
 
-                if (process.client) {
+                if (import.meta.client) {
                     const { getFromCache, saveToCache } = useSupabaseCache();
                     const cachedData = getFromCache('categorias_data');
                     if (cachedData) {
@@ -129,7 +129,7 @@ export const useCategoriasStore = defineStore('categorias', {
                     .map(item => item.id === updatedCategoria.id ? updatedCategoria : item)
                     .sort((a, b) => a.nombre.localeCompare(b.nombre));
 
-                if (process.client) {
+                if (import.meta.client) {
                     const { getFromCache, saveToCache } = useSupabaseCache();
                     const cachedData = getFromCache('categorias_data');
                     if (cachedData) {
@@ -146,7 +146,7 @@ export const useCategoriasStore = defineStore('categorias', {
                 const deletedId = payload.old.id;
                 this.categorias = this.categorias.filter(item => item.id !== deletedId);
 
-                if (process.client) {
+                if (import.meta.client) {
                     const { getFromCache, saveToCache } = useSupabaseCache();
                     const cachedData = getFromCache('categorias_data');
                     if (cachedData) {

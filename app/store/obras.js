@@ -31,7 +31,7 @@ export const useObrasStore = defineStore('obras', {
             this.isLoading = true;
             this.error = null;
 
-            if (process.client) {
+            if (import.meta.client) {
                 const { getFromCache, saveToCache } = useSupabaseCache();
                 const cacheKey = 'obras_data';
 
@@ -73,7 +73,7 @@ export const useObrasStore = defineStore('obras', {
 
                 this.obras = processedData || [];
 
-                if (process.client) {
+                if (import.meta.client) {
                     const { saveToCache } = useSupabaseCache();
                     saveToCache('obras_data', processedData, 60);
                 }
@@ -89,7 +89,7 @@ export const useObrasStore = defineStore('obras', {
         },
 
         async refreshObrasInBackground() {
-            if (!process.client) return;
+            if (!import.meta.client) return;
 
             try {
                 const { data, error } = await useSupabaseClient()
@@ -128,7 +128,7 @@ export const useObrasStore = defineStore('obras', {
         },
 
         setupRealtimeUpdates() {
-            if (!process.client) return () => { };
+            if (!import.meta.client) return () => { };
 
             if (this.subscription) {
                 this.subscription.unsubscribe();

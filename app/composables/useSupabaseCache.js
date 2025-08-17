@@ -1,5 +1,5 @@
 export const useSupabaseCache = () => {
-    const isBrowser = process.client;
+    const isBrowser = import.meta.client;
 
     const getFromCache = (key) => {
         if (!isBrowser) return null;
