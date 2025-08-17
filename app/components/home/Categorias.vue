@@ -99,7 +99,7 @@ const setCardRef = (el, index) => {
 
 // Solo ejecutar en cliente con un delay adicional
 const initScrollTriggers = () => {
-    if (!process.client || !$gsap || !$ScrollTrigger) return
+    if (!import.meta.client || !$gsap || !$ScrollTrigger) return
 
     // Doble nextTick para asegurar que todo esté renderizado
     nextTick(() => {
@@ -164,13 +164,13 @@ const initScrollTriggers = () => {
 }
 
 onMounted(() => {
-    if (process.client) {
+    if (import.meta.client) {
         initScrollTriggers()
     }
 })
 
 onBeforeUnmount(() => {
-    if (process.client && scrollTriggers.value.length > 0) {
+    if (import.meta.client && scrollTriggers.value.length > 0) {
         scrollTriggers.value.forEach(trigger => {
             if (trigger && typeof trigger.kill === 'function') {
                 trigger.kill()

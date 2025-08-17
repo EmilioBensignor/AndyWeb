@@ -6,10 +6,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image',
     '@nuxtjs/seo',
-    'nuxt-vitalizer',
-    'nuxt-booster',
-    '@nuxtjs/fontaine',
-    '@nuxt/scripts',
     '@nuxt/fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
@@ -40,23 +36,6 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/preload-data.js', mode: 'client' }
   ],
-  booster: {
-    detection: {
-      performance: true,
-      browserSupport: true,
-      battery: true
-    },
-    performanceMetrics: {
-      timing: {
-        fcp: 800,
-        dcl: 1200
-      }
-    },
-    lazyOffset: {
-      component: '0%',
-      asset: '0%'
-    }
-  },
   image: {
     screens: {
       default: 320,
@@ -74,9 +53,5 @@ export default defineNuxtConfig({
       youtube: 'https://img.youtube.com',
       vimeo: 'https://i.vimeocdn.com',
     }
-  },
-  vitalizer: {
-    disableStylesheets: 'entry',
-    disablePrefetchLinks: true
   },
 })
