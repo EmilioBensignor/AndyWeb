@@ -4,37 +4,37 @@
             <video ref="mobileVideo" class="w-full h-screen object-cover"
                 :class="{ 'hidden': currentDevice !== 'mobile' }" autoplay muted playsinline loop preload="auto"
                 @error="handleVideoError('mobile')">
-                <source src="/videos/hero/Andy-Loisch-Textil-Art-Mobile.mp4" type="video/mp4" />
-                <NuxtImg src="/videos/hero/Andy-Loisch-Textil-Art-Mobile.png" alt="Andy Loisch Textil Art"
+                <source src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Mobile.mp4" type="video/mp4" />
+                <NuxtImg src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Mobile.png" alt="Andy Loisch Textil Art"
                     class="w-full h-screen object-cover" />
             </video>
 
             <video ref="tabletVideo" class="w-full h-screen object-cover"
                 :class="{ 'hidden': currentDevice !== 'tablet' }" autoplay muted playsinline loop preload="auto"
                 @error="handleVideoError('tablet')">
-                <source src="/videos/hero/Andy-Loisch-Textil-Art-Tablet.mp4" type="video/mp4" />
-                <NuxtImg src="/videos/hero/Andy-Loisch-Textil-Art-Tablet.png" alt="Andy Loisch Textil Art"
+                <source src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Tablet.mp4" type="video/mp4" />
+                <NuxtImg src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Tablet.png" alt="Andy Loisch Textil Art"
                     class="w-full h-screen object-cover" />
             </video>
 
             <video ref="desktopVideo" class="w-full h-screen object-cover"
                 :class="{ 'hidden': currentDevice !== 'desktop' }" autoplay muted playsinline loop preload="auto"
                 @error="handleVideoError('desktop')">
-                <source src="/videos/hero/Andy-Loisch-Textil-Art-Desktop.mp4" type="video/mp4" />
-                <NuxtImg src="/videos/hero/Andy-Loisch-Textil-Art-Desktop.png" alt="Andy Loisch Textil Art"
+                <source src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Desktop.mp4" type="video/mp4" />
+                <NuxtImg src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Desktop.png" alt="Andy Loisch Textil Art"
                     class="w-full h-screen object-cover" />
             </video>
 
             <video ref="desktopXLVideo" class="w-full h-screen object-cover"
                 :class="{ 'hidden': currentDevice !== 'desktopXL' }" autoplay muted playsinline loop preload="auto"
                 @error="handleVideoError('desktopXL')">
-                <source src="/videos/hero/Andy-Loisch-Textil-Art-DesktopXL.mp4" type="video/mp4" />
-                <NuxtImg src="/videos/hero/Andy-Loisch-Textil-Art-DesktopXL.png" alt="Andy Loisch Textil Art"
+                <source src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-DesktopXL.mp4" type="video/mp4" />
+                <NuxtImg src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-DesktopXL.png" alt="Andy Loisch Textil Art"
                     class="w-full h-screen object-cover" />
             </video>
 
             <div v-show="showFallback" class="absolute inset-0 w-full h-screen">
-                <NuxtImg src="/videos/hero/Andy-Loisch-Textil-Art-Desktop.png" alt="Andy Loisch Textil Art"
+                <NuxtImg src="https://j3icjw0idbmsjk9a.public.blob.vercel-storage.com/videos/hero/Andy-Loisch-Textil-Art-Desktop.png" alt="Andy Loisch Textil Art"
                     class="w-full h-screen object-cover" />
             </div>
         </div>
